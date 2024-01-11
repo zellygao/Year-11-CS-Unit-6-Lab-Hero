@@ -1,9 +1,7 @@
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
 import java.lang.reflect.Method;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class HeroTester {
 
@@ -23,14 +21,14 @@ public class HeroTester {
     @Test
     public void TestConstructorName() {
         setUp();
-        assertEquals("Ensure that your constructor has been implemented correctly!", hero1.getName(), "Andrew Tate");
+        assertEquals("Andrew Tate", hero1.getName(), "Ensure that your constructor has been implemented correctly!");
         tearDown();
     }
 
     @Test
     public void TestConstructorHitPoints() {
         setUp();
-        assertEquals("Ensure that your constructor has been implemented correctly!", hero1.getHitPoints(), 100);
+        assertEquals(100, hero1.getHitPoints(), "Ensure that your constructor has been implemented correctly!");
         tearDown();
     }
 
@@ -38,7 +36,7 @@ public class HeroTester {
     public void TestAttack() {
         setUp();
         hero1.attack(hero2);
-        assertEquals("Ensure that your attack method has been implemented correctly!", hero1.getHitPoints() == hero2.getHitPoints(), false );
+        assertEquals(false, hero1.getHitPoints() == hero2.getHitPoints(), "Ensure that your attack method has been implemented correctly!");
         tearDown();
     }
 
@@ -46,7 +44,7 @@ public class HeroTester {
     public void TestFightToTheDeath() {
         setUp();
         hero1.fightUntilTheDeath(hero2);
-        assertTrue("Ensure that your duelToTheDeath method has been implemented correctly!", hero1.getHitPoints() != hero2.getHitPoints());
+        assertTrue(hero1.getHitPoints() != hero2.getHitPoints(), "Ensure that your duelToTheDeath method has been implemented correctly!");
         tearDown();
     }
 
@@ -54,8 +52,8 @@ public class HeroTester {
     public void TestFightToTheDeathHpZero() {
         setUp();
         hero1.fightUntilTheDeath(hero2);
-        if (hero1.getHitPoints() < hero2.getHitPoints()) assertTrue("Ensure that your duelToTheDeath method has been implemented correctly!", hero1.getHitPoints() == 0);
-        else assertTrue("Ensure that your duelToTheDeath method has been implemented correctly!", hero2.getHitPoints() == 0);
+        if (hero1.getHitPoints() < hero2.getHitPoints()) assertTrue(hero1.getHitPoints() == 0, "Ensure that your duelToTheDeath method has been implemented correctly!");
+        else assertTrue(hero2.getHitPoints() == 0, "Ensure that your duelToTheDeath method has been implemented correctly!");
         tearDown();
     }
 
@@ -74,7 +72,7 @@ public class HeroTester {
         int winsHero1 = Integer.parseInt(result.substring(indexOfFirstColon+2, indexOfFirstColonEnd-1));
         int winsHero2 = Integer.parseInt(result.substring(indexOfSecondColon+2, indexOfSecondColonEnd-1));
 
-        assertEquals("Ensure that your nFightsToTheDeath method has been implemented correctly!", numberOfFights, winsHero1+winsHero2);
+        assertEquals(numberOfFights, winsHero1+winsHero2, "Ensure that your nFightsToTheDeath method has been implemented correctly!");
 
         tearDown();
     }
@@ -86,7 +84,7 @@ public class HeroTester {
                 "name='" + hero1.getName() + '\'' +
                 ", hitPoints=" + hero1.getHitPoints() +
                 '}';
-        assertEquals("Ensure that your toString method returns a String that is formatted like the document specifies!", expected, hero1.toString());
+        assertEquals(expected, hero1.toString(), "Ensure that your toString method returns a String that is formatted like the document specifies!");
         tearDown();
     }
 
@@ -103,7 +101,7 @@ public class HeroTester {
     public void TestAllMethodsHaveBeenImplemented() {
         setUp();
         Method[] methods = hero1.getClass().getDeclaredMethods();
-        assertEquals("Ensure that you have implemented all of the methods that are included in the description!", 10,methods.length);
+        assertEquals(10, methods.length, "Ensure that you have implemented all of the methods that are included in the description!");
         tearDown();
     }
 
@@ -113,7 +111,7 @@ public class HeroTester {
         Method[] methods = hero1.getClass().getDeclaredMethods();
         boolean containsSenzuBean = false;
         for (Method method: methods) if (method.getName().equals("senzuBean")) containsSenzuBean = true;
-        assertTrue("Ensure that you have implemented the senzuBean method!", containsSenzuBean);
+        assertTrue(containsSenzuBean, "Ensure that you have implemented the senzuBean method!");
         tearDown();
     }
 
@@ -123,7 +121,7 @@ public class HeroTester {
         Method[] methods = hero1.getClass().getDeclaredMethods();
         boolean containsFightUntilTheDeathHelper = false;
         for (Method method: methods) if (method.getName().equals("fightUntilTheDeathHelper")) containsFightUntilTheDeathHelper = true;
-        assertTrue("Ensure that you have implemented the fightUntilTheDeathHelper method!", containsFightUntilTheDeathHelper);
+        assertTrue(containsFightUntilTheDeathHelper, "Ensure that you have implemented the fightUntilTheDeathHelper method!");
         tearDown();
     }
 
@@ -133,7 +131,7 @@ public class HeroTester {
         Method[] methods = hero1.getClass().getDeclaredMethods();
         boolean containsNFightsToTheDeathHelper = false;
         for (Method method: methods) if (method.getName().equals("nFightsToTheDeathHelper")) containsNFightsToTheDeathHelper = true;
-        assertTrue("Ensure that you have implemented the nFightsUntilTheDeathHelper method!", containsNFightsToTheDeathHelper);
+        assertTrue(containsNFightsToTheDeathHelper, "Ensure that you have implemented the nFightsUntilTheDeathHelper method!");
         tearDown();
     }
 
