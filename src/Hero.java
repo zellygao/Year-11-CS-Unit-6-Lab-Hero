@@ -41,23 +41,32 @@ public class Hero {
     }
 
     private int[] nFightsToTheDeathHelper(Hero opponent, int n){
+        int[] array = new int[2];
         for(int i = 0;i<n;i++){
             fightUntilTheDeathHelper(opponent);
-            //senzuBean(); //move after
+            if(hitPoints==0){
+                array[0]++;
+            }
+            else if(opponent.hitPoints==0){
+                array[1]++;
+            }
+            senzuBean();
+            opponent.senzuBean();
         }
-        return new int[0];
+        return array;
     }
 
     public String nFightsToTheDeath (Hero opponent, int n){
-        nFightsToTheDeathHelper(opponent,n);
-        if(n%2==1){ //odd number
-            return name+": "+ n +" wins\n" + opponent.getName() + ": "+n + " wins\n" + name + " wins!";//?????
-        }
-        else{
-            //do it
-            return name+": "+ n +" wins\n" + opponent.getName() + ": "+n + " wins\n OMG! It was actually a draw!";//?????
+        int[] arr = nFightsToTheDeathHelper(opponent,n);
+            if(arr[0]>arr[1]){
+                return name+": "+ arr[0] +" wins\n" + opponent.getName() + ": "+arr[1] + " wins\n" + name + " wins!";//?????
+            }
+            else if(arr[0]<arr[1]){
+                return name+": "+ arr[1] +" wins\n" + opponent.getName() + ": "+arr[1] + " wins\n" + opponent.name + " wins!";//?????
+            }
 
-        }
+            //do it
+            return name+": "+ arr[0] +" wins\n" + opponent.getName() + ": "+arr[0] + " wins\n OMG! It was actually a draw!";//?????
     }
     public void dramaticFightToTheDeath (Hero opponent){
         senzuBean();
